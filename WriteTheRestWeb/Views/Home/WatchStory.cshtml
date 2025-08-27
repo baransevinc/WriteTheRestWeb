@@ -12,8 +12,8 @@
     <div class="story-container">
         <!-- Hikaye Başlığı ve Konusu -->
         <div class="story-header">
-            <h1 class="story-title">@* @Model.StoryName *@dasdasdasd</h1>
-            <p class="story-topic">@* @Model.StoryTopic *@asdasdasdasdasdasd</p>
+            <h1 class="story-title"></h1>
+            <p class="story-topic"></p>
         </div>
 
         <!-- Bölümler Tablosu -->
@@ -30,8 +30,8 @@
                 @* @foreach (var bolum in Model.Bolumler)
                 { *@
                     <tr>
-                        <td>@* @bolum.Baslik *@ Deniz Kodaşın Maceraları</td>
-                        <td>@* @bolum.Konu *@ İStanbulda geçen bir hikaye</td>
+                        <td>Deniz Kodaşın Maceraları</td>
+                        <td> İstanbulda geçen bir hikaye</td>
                         <td>
                             <form method="get" asp-controller="Home" asp-action="VersionsChapter" asp-route-bolumId="@* @bolum.Id *@">
                             <button type="submit" class="btn btn-blue">Versiyonları Gör</button>

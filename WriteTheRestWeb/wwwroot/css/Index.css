@@ -7,7 +7,6 @@
 
 .story-container {
     max-width: 1000px;
-    margin: 50px auto;
     padding: 20px;
     background-color: white;
     border-radius: 15px;
@@ -104,4 +103,5 @@ form {
     .star.selected {
         color: gold;
     }
+
 

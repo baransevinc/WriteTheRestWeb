@@ -1,0 +1,72 @@
+﻿@model List<WriteTheRestWeb.Models.Story.StoryDto>
+@using WriteTheRestWeb.Models.Story
+
+@{
+    ViewData["Title"] = "Hikaye Yönetimi";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/AdminPanel.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="story-container">
+        <!-- Ekleme Formu -->
+        <form asp-action="Create" asp-controller="Stories" method="post" class="story-form">
+            <input name="Title" type="text" placeholder="Hikaye Adı" required />
+            <input name="Theme" type="text" placeholder="Tema" required />
+            <input name="Description" type="text" placeholder="Hikayenin Konusu" required />
+            <button type="submit">Ekle</button>
+        </form>
+
+        <!-- Hikaye Tablosu -->
+        <table class="story-table">
+            <thead>
+                <tr>
+                    <th>Hikaye Adı</th>
+                    <th>Tema</th>
+                    <th>Hikayenin Konusu</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                    <th>Bölüm Ekle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var story in Model)
+                {
+                    <tr>
+                        <td>@story.Title</td>
+                        <td>@story.Theme</td>
+                        <td>@story.Description</td>
+                        <td>
+                            <form asp-action="AdminPanelEdit" asp-controller="Stories" method="get">
+                                <input type="hidden" name="Id" value="@story.Id" />
+                                <input type="hidden" name="Title" value="@story.Title" />
+                                <input type="hidden" name="Theme" value="@story.Theme" />
+                                <input type="hidden" name="Description" value="@story.Description" />
+                                <button type="submit" class="edit-btn">Düzenle</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-controller="Stories" method="post" onsubmit="return confirm('Silmek istediğinize emin misiniz?');">
+                                <input type="hidden" name="id" value="@story.Id" />
+                                <button type="submit" class="delete-btn">Sil</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="AddChapter" asp-controller="Chapter" method="get">
+                                <input type="hidden" name="storyId" value="@story.Id" />
+                                <button type="submit" class="add-chapter-btn">Bölüm Ekle</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

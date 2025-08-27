@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th>Hikaye Adı</th>
+                    <th>Tema</th>
                     <th>Hikayenin Konusu</th>
                     <th>Bölüm Sayısı</th>
                     <th>İşlem</th>
@@ -27,9 +28,8 @@
 
     <script>
         const stories = [
-            { id: 1, name: "Ali'nin Macerası", topic: "Bir çocuk dünyayı keşfe çıkıyor.", chapterCount: 5 },
-            { id: 2, name: "Ayşe'nin Yolculuğu", topic: "Zorlu bir kış yolculuğu.", chapterCount: 3 },
-            { id: 3, name: "Gizemli Orman", topic: "Ormanda geçen esrarengiz olaylar.", chapterCount: 7 }
+            { id: 1, name: "Sherlock Holmes Bilinmezliğin Peşinde", tema: "Zafere karşı bilinmezlik", topic: "Karanlık bir İngiliz malikanesinde, lanetli bir ailenin soyunu tükettiği söylenen hayalet bir tazı efsanesi ortalığı kasıp kavurur. Sherlock Holmes, bu doğaüstü görünen gizemin ardındaki soğukkanlı gerçeği açığa çıkarmak için devreye girer.", chapterCount: 5 },
+            { id: 2, name: "Sherlock Holmes Mavi Yakut", tema: "Tesadüflerin ardında yatan karmaşık gerçekler", topic: "Noel zamanı bir kazın boğazından çıkan değerli bir mavi yakut, Sherlock Holmes’u hırsızlıkla başlayan ama beklenmedik şekilde gelişen bir gizemin peşine düşürür. Küçük bir ipucuyla büyük bir suçun perdesi aralanır.", chapterCount: 3 }
         ];
 
         const tbody = document.getElementById("storyBody");
@@ -39,6 +39,9 @@
 
             const nameCell = document.createElement("td");
             nameCell.textContent = story.name;
+
+            const temaCell = document.createElement("td");
+            temaCell.textContent = story.tema;
 
             const topicCell = document.createElement("td");
             topicCell.textContent = story.topic;
@@ -105,7 +108,8 @@
             }
 
             row.appendChild(nameCell);
-            row.appendChild(topicCell); // Yeni eklenen hücre
+            row.appendChild(temaCell);
+            row.appendChild(topicCell); 
             row.appendChild(chapterCell);
             row.appendChild(viewCell);
             row.appendChild(continueCell);

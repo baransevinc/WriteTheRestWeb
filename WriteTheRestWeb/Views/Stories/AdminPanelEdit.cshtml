@@ -1,0 +1,31 @@
+﻿@model WriteTheRestWeb.Models.Story.UpdateStoryDto
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hikaye Düzenle</title>
+    <link rel="stylesheet" href="~/css/AdminPanelEdit.css" />
+</head>
+<body>
+    <div class="edit-container">
+        <h2 class="edit-header">@Model?.Title Hikayesini Düzenle</h2>
+
+        <form asp-action="AdminPanelEdit" asp-controller="Stories" method="post" class="edit-form">
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            <label for="Title">Hikaye Adı</label>
+            <input type="text" id="Title" name="Title" value="@Model.Title" required />
+
+            <label for="Theme">Tema</label>
+            <input type="text" id="Theme" name="Theme" value="@Model.Theme" required />
+
+            <label for="Description">Hikayenin Konusu</label>
+            <textarea id="Description" name="Description" rows="6" required>@Model.Description</textarea>
+
+            <button type="submit">Kaydet</button>
+        </form>
+    </div>
+</body>
+</html>
