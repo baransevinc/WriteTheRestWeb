@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-posta Doğrulama</title>
+    <link rel="stylesheet" href="~/css/EmailVerification.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>E-posta Doğrulama</h1>
+        <p class="info-text">
+            Lütfen <strong>hotmail</strong> adresinize gönderilen 6 haneli doğrulama kodunu girin.
+        </p>
+
+        <form method="post" asp-controller="Account" asp-action="VerifyEmailCode">
+            <div class="form-group">
+                <label for="verificationCode">Doğrulama Kodu</label>
+                <input type="text" id="verificationCode" name="verificationCode" maxlength="6" required />
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="button">Doğrula</button>
+            </div>
+
+            <div class="resend-link">
+                <a href="@Url.Action("ResendCode", "Account")">Kodu yeniden gönder</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

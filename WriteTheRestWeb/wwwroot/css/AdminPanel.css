@@ -1,0 +1,127 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    max-height: 400px; 
+    overflow-y: auto; 
+}
+    .story-container::-webkit-scrollbar {
+        display: none;
+    }
+
+
+/* Form */
+.story-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+    .story-form input {
+        padding: 12px 15px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+        .story-form input:focus {
+            border-color: #2bc72b;
+        }
+
+    .story-form button {
+        padding: 12px;
+        font-size: 1rem;
+        background: linear-gradient(to bottom, #2bc72b, #e6f9e6);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+        .story-form button:hover {
+            background-color: #25a625;
+        }
+
+/* Tablo */
+.story-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .story-table th,
+    .story-table td {
+        border: 1px solid #ccc;
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .story-table th {
+        background-color: #2bc72b;
+        color: white;
+        font-weight: bold;
+    }
+
+    .story-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+/* Sil Butonu */
+.delete-btn {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.edit-btn {
+    background-color: #2196F3;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.add-chapter-btn {
+    background-color: #28a745; /* yeşil uyumlu ton */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+    .add-chapter-btn:hover {
+        background-color: #1e7e34;
+    }
+
+    .edit-btn:hover {
+        background-color: #0b7dda;
+    }
+
+    .delete-btn:hover {
+        background-color: #c0392b;
+    }

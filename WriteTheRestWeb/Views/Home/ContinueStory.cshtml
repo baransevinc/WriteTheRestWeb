@@ -1,0 +1,27 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Hikayeye Devam Et</title>
+    <link rel="stylesheet" href="~/css/ContinueStory.css" />
+</head>
+<body>
+    <div class="continue-container">
+        <h2 class="story-title">@* @Model.Name *@ Deniz Kodaşın Maceraları</h2>
+
+        <!-- Mevcut hikaye içeriği -->
+        <div class="story-content">
+          Mevcut Hikaye içeriği
+        </div>
+
+        <!-- Yeni içerik ekleme formu -->
+        <form asp-action="ContinueStory" asp-controller="Home" method="post" class="continue-form">
+            <input type="hidden" name="Id" value="@* @Model.Id *@" />
+            <label for="NewContent">Hikayeye Devam Et:</label>
+            <textarea id="NewContent" name="NewContent" rows="6" placeholder="Yeni bölümü buraya yazın..." required></textarea>
+            <button type="submit">Kaydet</button>
+        </form>
+    </div>
+</body>
+</html>

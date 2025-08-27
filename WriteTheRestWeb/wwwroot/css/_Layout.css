@@ -1,0 +1,194 @@
+﻿/* Genel ayarlar aynen kalıyor */
+
+/* Sidebar gelişmiş arka plan */
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(145deg, #22a82a, #2bc72b 40%, #8de6a6 85%, #daf7d3 100%);
+    color: #f0f9f1;
+    box-shadow: 5px 0 30px rgba(0, 100, 0, 0.25);
+    padding-top: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    user-select: none;
+}
+
+/* Sidebar başlık */
+.sidebar-header label {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #e6ffe6;
+    text-shadow: 1px 1px 5px #144d14;
+    cursor: default;
+}
+
+/* Menü ikonları gelişmiş */
+.icon-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+/* Tooltip için container */
+.icon {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #e6ffe6;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(43, 199, 43, 0.4);
+}
+
+    /* İkon hover animasyonu */
+    .icon:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        color: #228022;
+        transform: scale(1.2) rotate(10deg);
+        box-shadow: 0 0 25px rgba(34, 136, 34, 0.75);
+        z-index: 10;
+    }
+
+        /* Tooltip kutusu */
+        .icon:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 75px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #2bc72b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+    /* Tooltip görünmez başlangıç */
+    .icon::after {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+/* Sağ içerik */
+.profile {
+    margin-left: 300px;
+    width: calc(100% - 300px);
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffffff, #f9fff9);
+    overflow-y: auto;
+    box-shadow: -15px 0 35px rgba(0, 100, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+    
+    .profile::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .profile::-webkit-scrollbar-track {
+        background: #e4f7e4;
+        border-radius: 8px;
+    }
+
+    .profile::-webkit-scrollbar-thumb {
+        background: #2bc72b;
+        border-radius: 8px;
+        box-shadow: inset 0 0 5px #1a6e1a;
+        transition: background 0.3s ease;
+    }
+
+        .profile::-webkit-scrollbar-thumb:hover {
+            background: #228022;
+        }
+
+
+.profile-logo img {
+    max-width: 320px;
+    max-height: 220px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.5s ease, filter 0.5s ease;
+    animation: logoPulse 6s ease-in-out infinite;
+    cursor: default;
+}
+
+   
+    .profile-logo img:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 8px 20px rgba(43, 199, 43, 0.9));
+    }
+
+
+@keyframes logoPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 8px 15px rgba(43, 199, 43, 0.7));
+    }
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+        padding-top: 20px;
+        gap: 20px;
+    }
+
+    .sidebar-header label {
+        display: none;
+    }
+
+    .icon-menu {
+        gap: 20px;
+    }
+
+    .icon {
+        width: 70px;
+        height: 70px;
+        font-size: 32px;
+    }
+
+    .profile {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        padding: 20px 25px;
+        border-radius: 0;
+        box-shadow: none;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+
+    .profile-logo img {
+        max-width: 250px;
+        max-height: 180px;
+    }
+}

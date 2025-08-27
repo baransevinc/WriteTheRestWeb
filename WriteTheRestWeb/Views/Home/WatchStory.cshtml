@@ -1,0 +1,51 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@* @Model.StoryName *@</title>
+    <link rel="stylesheet" href="~/css/WatchStory.css" />
+</head>
+<body>
+    <div class="story-container">
+        <!-- Hikaye Başlığı ve Konusu -->
+        <div class="story-header">
+            <h1 class="story-title"></h1>
+            <p class="story-topic"></p>
+        </div>
+
+        <!-- Bölümler Tablosu -->
+        <table class="chapter-table">
+            <thead>
+                <tr>
+                    <th>Bölüm Adı</th>
+                    <th>Bölüm Konusu</th>
+                    <th>Versiyonları Gör</th>
+                    <th>Yaz</th>
+                </tr>
+            </thead>
+            <tbody>
+                @* @foreach (var bolum in Model.Bolumler)
+                { *@
+                    <tr>
+                        <td>Deniz Kodaşın Maceraları</td>
+                        <td> İstanbulda geçen bir hikaye</td>
+                        <td>
+                            <form method="get" asp-controller="Home" asp-action="VersionsChapter" asp-route-bolumId="@* @bolum.Id *@">
+                            <button type="submit" class="btn btn-blue">Versiyonları Gör</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="get" asp-controller="Home" asp-action="ContinueStory" asp-route-bolumId="@* @bolum.Id *@">
+                                <button type="submit" class="btn">Yaz</button>
+                            </form>
+                        </td>
+                    </tr>
+                @* } *@
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

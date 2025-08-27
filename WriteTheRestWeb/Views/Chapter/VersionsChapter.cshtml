@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bölüm Versiyonları</title>
+    <link rel="stylesheet" href="~/css/VersionsChapter.css" />
+</head>
+<body>
+    <div class="version-container">
+        <div class="chapter-header">
+            <h2>Bölüm 1 - Deniz Kodaş'ın Tekirdağ'daki Eşeklikleri</h2>
+        </div>
+
+        <table class="version-table">
+            <thead>
+                <tr>
+                    <th>Yazılmış Versiyon</th>
+                    <th>Yazar</th>
+                    <th>Tarih</th>
+                    <th>Gör</th>
+                    <th>Puanla</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ali sabah uyanır uyanmaz ormanda kayboldu...</td>
+                    <td>Zeynep K.</td>
+                    <td>12.06.2025</td>
+                    <td>
+                        <button class="btn-view" onclick="showVersion(`Ali sabah uyanır uyanmaz ormanda kayboldu. Gözlerini açtığında hiçbir şey hatırlamıyordu. Tek bildiği şey kaçması gerektiğiydi.`)">Gör</button>
+                    </td>
+                    <td class="rating" data-version-id="1"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Pencere -->
+    <div id="versionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 class="modal-title">Versiyon Detayı</h3>
+            <p id="modal-text" class="modal-text"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ratingCells = document.querySelectorAll(".rating");
+
+            ratingCells.forEach(cell => {
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement("span");
+                    star.classList.add("star");
+                    star.dataset.value = i;
+                    star.innerHTML = "&#9733;";
+                    star.addEventListener("mouseover", () => highlightStars(cell, i));
+                    star.addEventListener("mouseout", () => resetStars(cell));
+                    star.addEventListener("click", () => {
+                        selectStars(cell, i);
+                        const versionId = cell.dataset.versionId;
+                        console.log(`Versiyon ID ${versionId} için verilen puan: ${i}`);
+                    });
+                    cell.appendChild(star);
+                }
+            });
+
+            function highlightStars(cell, count) {
+                const stars = cell.querySelectorAll(".star");
+                stars.forEach((star, index) => {
+                    star.classList.toggle("hovered", index < count);
+                });
+            }
+
+            function resetStars(cell) {
+                const stars = cell.querySelectorAll(".star");
+                stars.forEach(star => star.classList.remove("hovered"));
+            }
+
+            function selectStars(cell, count) {
+                const stars = cell.querySelectorAll(".star");
+                stars.forEach((star, index) => {
+                    star.classList.toggle("selected", index < count);
+                });
+            }
+
+            // Modal işlemleri
+            const modal = document.getElementById("versionModal");
+            const modalText = document.getElementById("modal-text");
+            const closeBtn = document.querySelector(".close-btn");
+
+            window.showVersion = function (content) {
+                modalText.textContent = content;
+                modal.style.display = "block";
+            };
+
+            closeBtn.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,8 +1,141 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hikayeler</title>
+    <link rel="stylesheet" href="~/css/Index.css" />
+</head>
+<body>
+    <div class="story-container">
+        <table class="story-table">
+            <thead>
+                <tr>
+                    <th>Hikaye Adı</th>
+                    <th>Tema</th>
+                    <th>Hikayenin Konusu</th>
+                    <th>Bölüm Sayısı</th>
+                    <th>İşlem</th>
+                    <th>Devam Et</th>
+                    <th>Puan</th>
+                </tr>
+            </thead>
+            <tbody id="storyBody">
+                <!-- JavaScript ile doldurulacak -->
+            </tbody>
+        </table>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <script>
+        const stories = [
+            { id: 1, name: "Sherlock Holmes Bilinmezliğin Peşinde", tema: "Zafere karşı bilinmezlik", topic: "Karanlık bir İngiliz malikanesinde, lanetli bir ailenin soyunu tükettiği söylenen hayalet bir tazı efsanesi ortalığı kasıp kavurur. Sherlock Holmes, bu doğaüstü görünen gizemin ardındaki soğukkanlı gerçeği açığa çıkarmak için devreye girer.", chapterCount: 5 },
+            { id: 2, name: "Sherlock Holmes Mavi Yakut", tema: "Tesadüflerin ardında yatan karmaşık gerçekler", topic: "Noel zamanı bir kazın boğazından çıkan değerli bir mavi yakut, Sherlock Holmes’u hırsızlıkla başlayan ama beklenmedik şekilde gelişen bir gizemin peşine düşürür. Küçük bir ipucuyla büyük bir suçun perdesi aralanır.", chapterCount: 3 }
+        ];
+
+        const tbody = document.getElementById("storyBody");
+
+        stories.forEach(story => {
+            const row = document.createElement("tr");
+
+            const nameCell = document.createElement("td");
+            nameCell.textContent = story.name;
+
+            const temaCell = document.createElement("td");
+            temaCell.textContent = story.tema;
+
+            const topicCell = document.createElement("td");
+            topicCell.textContent = story.topic;
+
+            const chapterCell = document.createElement("td");
+            chapterCell.textContent = story.chapterCount;
+
+            // Gör Butonu
+            const viewCell = document.createElement("td");
+            const viewForm = document.createElement("form");
+            viewForm.method = "post";
+            viewForm.action = "/Home/WatchStory";
+
+            const viewInput = document.createElement("input");
+            viewInput.type = "hidden";
+            viewInput.name = "id";
+            viewInput.value = story.id;
+
+            const viewButton = document.createElement("button");
+            viewButton.type = "submit";
+            viewButton.classList.add("view-btn");
+            viewButton.textContent = "Gör";
+
+            viewForm.appendChild(viewInput);
+            viewForm.appendChild(viewButton);
+            viewCell.appendChild(viewForm);
+
+            // Devam Et Butonu
+            const continueCell = document.createElement("td");
+            const continueForm = document.createElement("form");
+            continueForm.method = "post";
+            continueForm.action = "/Home/ContinueStory";
+
+            const continueInput = document.createElement("input");
+            continueInput.type = "hidden";
+            continueInput.name = "id";
+            continueInput.value = story.id;
+
+            const continueButton = document.createElement("button");
+            continueButton.type = "submit";
+            continueButton.classList.add("continue-btn");
+            continueButton.textContent = "Devam Et";
+
+            continueForm.appendChild(continueInput);
+            continueForm.appendChild(continueButton);
+            continueCell.appendChild(continueForm);
+
+            // Yıldız Puanlama
+            const ratingCell = document.createElement("td");
+            ratingCell.classList.add("rating");
+
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement("span");
+                star.classList.add("star");
+                star.dataset.value = i;
+                star.innerHTML = "&#9733;";
+                star.addEventListener("mouseover", () => highlightStars(ratingCell, i));
+                star.addEventListener("mouseout", () => resetStars(ratingCell));
+                star.addEventListener("click", () => {
+                    selectStars(ratingCell, i);
+                    console.log(`Hikaye ID ${story.id} için verilen puan: ${i}`);
+                });
+                ratingCell.appendChild(star);
+            }
+
+            row.appendChild(nameCell);
+            row.appendChild(temaCell);
+            row.appendChild(topicCell); 
+            row.appendChild(chapterCell);
+            row.appendChild(viewCell);
+            row.appendChild(continueCell);
+            row.appendChild(ratingCell);
+
+            tbody.appendChild(row);
+        });
+
+        function highlightStars(cell, count) {
+            const stars = cell.querySelectorAll(".star");
+            stars.forEach((star, index) => {
+                star.classList.toggle("hovered", index < count);
+            });
+        }
+
+        function resetStars(cell) {
+            const stars = cell.querySelectorAll(".star");
+            stars.forEach(star => star.classList.remove("hovered"));
+        }
+
+        function selectStars(cell, count) {
+            const stars = cell.querySelectorAll(".star");
+            stars.forEach((star, index) => {
+                star.classList.toggle("selected", index < count);
+            });
+        }
+    </script>
+</body>
+</html>

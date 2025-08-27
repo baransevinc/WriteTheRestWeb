@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WriteTheRest | Giriş</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/SplashScreen.css" />
+</head>
+<body>
+    <div id="splash-screen">
+        <div class="splash-content">
+            <img src="~/images/WriteTheRest-Logo.png" alt="WriteTheRest Logo" />
+            <h1>Sen Yaz, Hikaye Devam Etsin.</h1>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            window.location.href = '@Url.Action("Login", "Account")';
+        }, 4000); 
+    </script>
+</body>
+</html>

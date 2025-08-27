@@ -1,0 +1,109 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Bebas Neue', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2bc72b 0%, #0a6f22 60%, #e6f9e6 100%);
+}
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 1s ease-in-out 3.5s forwards;
+    padding: 20px;
+}
+
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+    /* Logo */
+    .splash-content img {
+        width: 220px;
+        height: auto;
+        filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.25));
+        animation: logoPulse 3.5s ease-in-out forwards;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Glow efekt: logo altında yumuşak ışık */
+    .splash-content::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 180px;
+        height: 40px;
+        background: radial-gradient(ellipse at center, rgba(43, 199, 43, 0.6) 0%, transparent 80%);
+        filter: blur(15px);
+        z-index: 5;
+        transform: translateY(25px);
+    }
+
+    /* Hoş Geldiniz Yazısı */
+    .splash-content h1 {
+        color: white;
+        font-size: 44px;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35);
+        animation: slideUpFadeIn 2s ease forwards;
+        user-select: none;
+    }
+
+/* Animasyonlar */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Logo pulse: biraz büyüyüp küçülerek canlılık efekti */
+@keyframes logoPulse {
+    0% {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Yazı yukarıdan yumuşak fade-in */
+@keyframes slideUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

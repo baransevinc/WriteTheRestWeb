@@ -1,0 +1,63 @@
+﻿@model List<WriteTheRestWeb.Models.Chapter.ChapterDto>
+@using WriteTheRestWeb.Models.Chapter
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bölüm Ekle</title>
+    <link rel="stylesheet" href="~/css/AddChapter.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="story-container">
+        <!-- Bölüm Ekleme Formu -->
+        <form asp-action="Create" asp-controller="Chapter" method="post" class="story-form">
+            <input name="Title" placeholder="Bölüm Başlığı" required />
+            <input name="Order" type="number" placeholder="Sıra" required />
+            <input name="Summary" placeholder="Bölüm Özeti" />
+            <input name="StoryId" type="hidden" value="@ViewBag.StoryId" />
+            <button type="submit">Ekle</button>
+        </form>
+
+        <!-- Bölümler Tablosu -->
+        <table class="story-table">
+            <thead>
+                <tr>
+                    <th>Bölüm Başlığı</th>
+                    <th>Sıra</th>
+                    <th>Özet</th>
+                    <th>Oluşturulma</th>
+                    <th>Tamamlandı mı?</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var chapter in Model)
+                    {
+                        <tr>
+                            <td>@chapter.Title</td>
+                            <td>@chapter.Order</td>
+                            <td>@chapter.Summary</td>
+                            <td>@chapter.CreatedAt.ToString("g")</td>
+                            <td>@(chapter.IsCompleted ? "Evet" : "Hayır")</td>
+                            <td>
+                                <a asp-action="Edit" asp-controller="Chapter" asp-route-id="@chapter.Id" class="edit-btn">Güncelle</a>
+                            </td>
+                            <td>
+                                <form asp-action="Delete" asp-controller="Chapter" method="post" onsubmit="return confirm('Bölümü silmek istiyor musunuz?');">
+                                    <input type="hidden" name="id" value="@chapter.Id" />
+                                    <button type="submit" class="delete-btn">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

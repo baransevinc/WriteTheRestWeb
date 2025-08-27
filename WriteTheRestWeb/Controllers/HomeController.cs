@@ -6,6 +6,15 @@ namespace WriteTheRestWeb.Controllers
 {
     public class HomeController : Controller
     {
+        public IActionResult AdminPanel()
+        {
+            return View();
+        }
+        public IActionResult AdminPanelEdit()
+        {
+            return View();
+        }
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -13,12 +22,40 @@ namespace WriteTheRestWeb.Controllers
             _logger = logger;
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
         public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult WatchStory()
+        {
+            return View();
+        }
+        public IActionResult ContinueStory()
+        {
+            return View();
+        }
+        public IActionResult Profile()
+        {
+            return View();
+        }
+        public IActionResult ProfileEdit()
         {
             return View();
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult VersionsChapter()
+        {
+            return View();
+        }
+        public IActionResult AddChapter()
         {
             return View();
         }
