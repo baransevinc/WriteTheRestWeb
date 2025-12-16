@@ -16,10 +16,14 @@ Uygulama, iş mantığını ve veri erişimini içermeyen, yalnızca API ile hab
 
 WriteTheRestWeb
 │
+
 ├─ Frontend (ASP.NET Core Razor Pages)
+
 │ └─ API Entegrasyonu (HttpClient)
+
 │
 WriteTheRestApi
+
 └─ Backend (.NET Web API)
 
 yaml
