@@ -1,90 +1,109 @@
+✍️ WriteTheRestWeb
+
+Hikâye ve bölüm yönetimi için geliştirilmiş modern bir ASP.NET Core Razor Pages frontend uygulaması.
+
+🚀 Proje Hakkında
+
+WriteTheRestWeb, hikâyelerin ve bu hikâyelere ait bölümlerin yönetilmesini sağlayan bir kullanıcı arayüzü uygulamasıdır.
+Uygulama, tüm veri işlemleri ve iş mantığı için ayrı bir .NET Web API projesi ile entegre çalışır.
+
+🔗 CRUD işlemlerinin tamamı API üzerinden gerçekleştirilir.
+
+🧩 Proje Yapısı
+WriteTheRestWeb/
+├── Frontend (Razor Pages)
+└── API Entegrasyonu (HttpClient)
+
+
+WriteTheRestApi/
+└── Backend (.NET Web API)
+
 WriteTheRestWeb
-
-WriteTheRestWeb, hikâye ve bölümlerin yönetimini sağlayan, ASP.NET Core Razor Pages ile geliştirilmiş bir frontend uygulamasıdır.
-Uygulama, iş mantığı ve veri işlemleri için ayrı bir .NET Web API projesiyle haberleşir. Tüm ekleme, güncelleme, silme ve listeleme işlemleri API üzerinden yapılır.
-
-Proje Yapısı
-
-WriteTheRestWeb
-Kullanıcı arayüzünü içeren Razor Pages tabanlı frontend projesi.
+Kullanıcı arayüzünü barındıran Razor Pages tabanlı frontend projesi.
 
 WriteTheRestApi
-Ayrı bir repository veya klasör altında yer alan, veri erişimi ve iş kurallarını yöneten .NET API projesi.
+Veri erişimi, iş kuralları ve API uç noktalarını yöneten backend projesi.
 
-Özellikler
+✨ Özellikler
 
-Hikâye oluşturma, görüntüleme, güncelleme ve silme
+📖 Hikâye ekleme, listeleme, güncelleme ve silme
 
-Hikâyelere bağlı bölümlerin yönetimi (ekleme, listeleme, düzenleme, silme)
+📝 Hikâyelere bağlı bölümlerin yönetimi
 
-Tüm CRUD işlemlerinin API üzerinden gerçekleştirilmesi
+🔄 API tabanlı tüm CRUD işlemleri
 
-Temiz ve modern Razor Pages mimarisi
+🧱 Temiz ve ölçeklenebilir Razor Pages mimarisi
 
-HttpClient kullanılarak API ile haberleşme
+🌐 HttpClient ile API haberleşmesi
 
-Gereksinimler
+🛠️ Gereksinimler
 
 .NET 8 SDK
 
-Visual Studio 2022 veya daha yeni bir sürüm
+Visual Studio 2022 veya üzeri
 
 Çalışır durumda bir WriteTheRestApi projesi
 
-Kurulum ve Çalıştırma
-1️⃣ API Projesini Başlatma
+⚙️ Kurulum & Çalıştırma
+1️⃣ API Projesini Çalıştırın
 
-WriteTheRestApi projesini açın.
+WriteTheRestApi projesini açın
 
-Projeyi çalıştırın.
+Projeyi çalıştırın
 
 Varsayılan adres:
+
 https://localhost:7081/
 
-Kullanılan API uç noktaları:
+Kullanılan API Endpoint'leri:
 
 api/stories → Hikâye işlemleri
 
 api/chapters → Bölüm işlemleri
 
-2️⃣ Frontend Projesini Başlatma
+2️⃣ Frontend Projesini Çalıştırın
 
-Bu repository’yi bilgisayarınıza klonlayın.
+Bu repository’yi klonlayın
 
-Gerekli NuGet paketlerini geri yükleyin.
+NuGet paketlerini geri yükleyin
 
-appsettings.json veya Program.cs içinde API adresinin doğru tanımlandığından emin olun:
+API adresini kontrol edin:
 
-https://localhost:7081/
+// appsettings.json veya Program.cs
+"ApiBaseUrl": "https://localhost:7081/"
 
+Projeyi başlatın
 
-Projeyi çalıştırın.
+3️⃣ Entegrasyon
 
-3️⃣ API – Frontend Entegrasyonu
+Frontend ve API projeleri eş zamanlı çalışmalıdır
 
-API ve frontend projeleri aynı anda çalışıyor olmalıdır.
+StoriesApiService ve ChapterApiService sınıfları API isteklerini yönetir
 
-StoriesApiService ve ChapterApiService sınıfları, API endpoint’lerine istek gönderir.
+Kullanıcı aksiyonları anlık olarak API tarafına yansıtılır
 
-Tüm kullanıcı işlemleri API üzerinden işlenir.
+🧪 Kullanım
 
-Kullanım
+🏠 Ana sayfadan hikâye ekleyebilir ve mevcut hikâyeleri yönetebilirsiniz
 
-Ana sayfa üzerinden yeni hikâyeler ekleyebilir ve mevcut hikâyeleri görüntüleyebilirsiniz.
+➕ Her hikâye için Bölüm Ekle seçeneğiyle bölümleri düzenleyebilirsiniz
 
-Her hikâye için Bölüm Ekle seçeneğiyle ilgili bölümleri yönetebilirsiniz.
+🔄 Yapılan tüm işlemler API üzerinden kaydedilir
 
-Yapılan tüm değişiklikler anlık olarak API tarafına yansır.
-
-Örnek API İstekleri
-Hikâye Ekleme
+📌 Örnek API İstekleri
+➕ Hikâye Ekleme
 POST /api/stories/add
-
 {
   "title": "Yeni Hikâye",
   "theme": "Macera",
   "description": "Kısa açıklama"
 }
-
-Hikâyeye Ait Bölümleri Getirme
+📄 Bölümleri Listeleme
 GET /api/chapters?storyId=1
+📎 Notlar
+
+API adresi ortama göre değiştirilebilir
+
+Proje eğitim ve geliştirme amaçlı tasarlanmıştır
+
+Katkılar ve geliştirmeler açıktır
