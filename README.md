@@ -1,109 +1,120 @@
-✍️ WriteTheRestWeb
+# WriteTheRestWeb
 
-Hikâye ve bölüm yönetimi için geliştirilmiş modern bir ASP.NET Core Razor Pages frontend uygulaması.
+Hikâye ve bölümlerin yönetimi için geliştirilmiş **ASP.NET Core Razor Pages** tabanlı bir frontend uygulamasıdır.  
+Tüm veri işlemleri, ayrı bir **.NET Web API** projesi üzerinden gerçekleştirilir.
 
-🚀 Proje Hakkında
+---
 
-WriteTheRestWeb, hikâyelerin ve bu hikâyelere ait bölümlerin yönetilmesini sağlayan bir kullanıcı arayüzü uygulamasıdır.
-Uygulama, tüm veri işlemleri ve iş mantığı için ayrı bir .NET Web API projesi ile entegre çalışır.
+## Proje Hakkında
 
-🔗 CRUD işlemlerinin tamamı API üzerinden gerçekleştirilir.
+**WriteTheRestWeb**, hikâyeleri ve bu hikâyelere ait bölümleri yönetmeye yönelik bir kullanıcı arayüzü sunar.  
+Uygulama, iş mantığını ve veri erişimini içermeyen, yalnızca API ile haberleşen bir frontend yapısına sahiptir.
 
-🧩 Proje Yapısı
-WriteTheRestWeb/
-├── Frontend (Razor Pages)
-└── API Entegrasyonu (HttpClient)
+---
 
-
-WriteTheRestApi/
-└── Backend (.NET Web API)
+## Proje Yapısı
 
 WriteTheRestWeb
-Kullanıcı arayüzünü barındıran Razor Pages tabanlı frontend projesi.
-
+│
+├─ Frontend (ASP.NET Core Razor Pages)
+│ └─ API Entegrasyonu (HttpClient)
+│
 WriteTheRestApi
-Veri erişimi, iş kuralları ve API uç noktalarını yöneten backend projesi.
+└─ Backend (.NET Web API)
 
-✨ Özellikler
+yaml
+Kodu kopyala
 
-📖 Hikâye ekleme, listeleme, güncelleme ve silme
+- **WriteTheRestWeb**  
+  Razor Pages kullanılarak geliştirilmiş kullanıcı arayüzü projesi.
 
-📝 Hikâyelere bağlı bölümlerin yönetimi
+- **WriteTheRestApi**  
+  Veri işlemleri ve iş kurallarını yöneten backend API projesi.
 
-🔄 API tabanlı tüm CRUD işlemleri
+---
 
-🧱 Temiz ve ölçeklenebilir Razor Pages mimarisi
+## Özellikler
 
-🌐 HttpClient ile API haberleşmesi
+- Hikâye ekleme, listeleme, düzenleme ve silme
+- Hikâyelere bağlı bölümlerin yönetimi
+- Tüm CRUD işlemlerinin API üzerinden yapılması
+- Temiz ve sade Razor Pages mimarisi
+- HttpClient ile API entegrasyonu
 
-🛠️ Gereksinimler
+---
 
-.NET 8 SDK
+## Gereksinimler
 
-Visual Studio 2022 veya üzeri
+- .NET 8 SDK
+- Visual Studio 2022 veya üzeri
+- Çalışır durumda bir WriteTheRestApi projesi
 
-Çalışır durumda bir WriteTheRestApi projesi
+---
 
-⚙️ Kurulum & Çalıştırma
-1️⃣ API Projesini Çalıştırın
+## Kurulum ve Çalıştırma
 
-WriteTheRestApi projesini açın
+### 1. API Projesini Çalıştırma
 
-Projeyi çalıştırın
-
-Varsayılan adres:
+1. WriteTheRestApi projesini açın
+2. Projeyi çalıştırın
+3. Varsayılan adres:
 
 https://localhost:7081/
 
-Kullanılan API Endpoint'leri:
+yaml
+Kodu kopyala
 
-api/stories → Hikâye işlemleri
+**API Endpoint’leri**
+- `api/stories` – Hikâye işlemleri
+- `api/chapters` – Bölüm işlemleri
 
-api/chapters → Bölüm işlemleri
+---
 
-2️⃣ Frontend Projesini Çalıştırın
+### 2. Frontend Projesini Çalıştırma
 
-Bu repository’yi klonlayın
+1. Bu repository’yi klonlayın
+2. Gerekli NuGet paketlerini geri yükleyin
+3. API adresini kontrol edin:
 
-NuGet paketlerini geri yükleyin
-
-API adresini kontrol edin:
-
-// appsettings.json veya Program.cs
-"ApiBaseUrl": "https://localhost:7081/"
-
+```json
+{
+  "ApiBaseUrl": "https://localhost:7081/"
+}
 Projeyi başlatın
 
-3️⃣ Entegrasyon
+3. Entegrasyon
+API ve frontend projeleri aynı anda çalışmalıdır
 
-Frontend ve API projeleri eş zamanlı çalışmalıdır
+StoriesApiService ve ChapterApiService sınıfları API çağrılarını yapar
 
-StoriesApiService ve ChapterApiService sınıfları API isteklerini yönetir
+Yapılan tüm işlemler API tarafına anında yansır
 
-Kullanıcı aksiyonları anlık olarak API tarafına yansıtılır
+Kullanım
+Ana sayfadan hikâye ekleyebilir ve mevcut hikâyeleri yönetebilirsiniz
 
-🧪 Kullanım
+Her hikâye için bölüm ekleme ve düzenleme işlemleri yapılabilir
 
-🏠 Ana sayfadan hikâye ekleyebilir ve mevcut hikâyeleri yönetebilirsiniz
+Tüm işlemler API üzerinden gerçekleştirilir
 
-➕ Her hikâye için Bölüm Ekle seçeneğiyle bölümleri düzenleyebilirsiniz
-
-🔄 Yapılan tüm işlemler API üzerinden kaydedilir
-
-📌 Örnek API İstekleri
-➕ Hikâye Ekleme
+Örnek API İstekleri
+Hikâye Ekleme
+h
+Kodu kopyala
 POST /api/stories/add
+json
+Kodu kopyala
 {
   "title": "Yeni Hikâye",
   "theme": "Macera",
   "description": "Kısa açıklama"
 }
-📄 Bölümleri Listeleme
+Bölümleri Listeleme
+http
+Kodu kopyala
 GET /api/chapters?storyId=1
-📎 Notlar
-
+Notlar
 API adresi ortama göre değiştirilebilir
 
-Proje eğitim ve geliştirme amaçlı tasarlanmıştır
+Proje geliştirme ve öğrenme amaçlıdır
 
-Katkılar ve geliştirmeler açıktır
+Katkılar açıktır
