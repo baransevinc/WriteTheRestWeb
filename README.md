@@ -1,52 +1,90 @@
 WriteTheRestWeb
 
-WriteTheRestWeb, hikaye ve bölüm yönetimi için geliştirilmiş bir ASP.NET Core Razor Pages frontend uygulamasıdır. Proje, ayrı bir .NET API projesi ile entegre çalışır. Tüm veri işlemleri (CRUD) API üzerinden gerçekleştirilir.
+WriteTheRestWeb, hikâye ve bölümlerin yönetimini sağlayan, ASP.NET Core Razor Pages ile geliştirilmiş bir frontend uygulamasıdır.
+Uygulama, iş mantığı ve veri işlemleri için ayrı bir .NET Web API projesiyle haberleşir. Tüm ekleme, güncelleme, silme ve listeleme işlemleri API üzerinden yapılır.
+
 Proje Yapısı
-•	WriteTheRestWeb: Bu repository’deki frontend (kullanıcı arayüzü) projesidir.
-•	WriteTheRestApi: Ayrı bir repository veya klasörde bulunan, veri işlemlerini ve iş mantığını yöneten .NET API projesidir.
+
+WriteTheRestWeb
+Kullanıcı arayüzünü içeren Razor Pages tabanlı frontend projesi.
+
+WriteTheRestApi
+Ayrı bir repository veya klasör altında yer alan, veri erişimi ve iş kurallarını yöneten .NET API projesi.
 
 Özellikler
-•	Hikaye ekleme, listeleme, düzenleme ve silme
-•	Her hikayeye ait bölümleri ekleme, listeleme, düzenleme ve silme
-•	Tüm işlemler API üzerinden yapılır
-•	Modern Razor Pages mimarisi
-•	HttpClient ile API entegrasyonu
+
+Hikâye oluşturma, görüntüleme, güncelleme ve silme
+
+Hikâyelere bağlı bölümlerin yönetimi (ekleme, listeleme, düzenleme, silme)
+
+Tüm CRUD işlemlerinin API üzerinden gerçekleştirilmesi
+
+Temiz ve modern Razor Pages mimarisi
+
+HttpClient kullanılarak API ile haberleşme
 
 Gereksinimler
-•	.NET 8 SDK
-•	Visual Studio 2022 veya üzeri
-•	API projesi (WriteTheRest) ile birlikte çalışır
 
-Adımlar
-1.	API Projesini Çalıştırın
-•	API projesini açın ve çalıştırın.
-•	Varsayılan olarak https://localhost:7081/ adresinde çalışır.
-•	API endpoint’leri:
-•	api/stories (hikaye işlemleri)
-•	api/chapters (bölüm işlemleri)
-2.	Frontend Projesini Çalıştırın
-•	Bu repository’yi klonlayın.
-•	Gerekli NuGet paketlerini yükleyin.
-•	appsettings.json veya Program.cs dosyasında API adresinin doğru olduğundan emin olun (https://localhost:7081/).
-•	Projeyi başlatın.
+.NET 8 SDK
 
-3.	Entegrasyon
-•	API ve frontend projeleri aynı anda çalıştırılmalıdır.
-•	Servisler (StoriesApiService, ChapterApiService) API endpoint’lerine istek atar.
+Visual Studio 2022 veya daha yeni bir sürüm
+
+Çalışır durumda bir WriteTheRestApi projesi
+
+Kurulum ve Çalıştırma
+1️⃣ API Projesini Başlatma
+
+WriteTheRestApi projesini açın.
+
+Projeyi çalıştırın.
+
+Varsayılan adres:
+https://localhost:7081/
+
+Kullanılan API uç noktaları:
+
+api/stories → Hikâye işlemleri
+
+api/chapters → Bölüm işlemleri
+
+2️⃣ Frontend Projesini Başlatma
+
+Bu repository’yi bilgisayarınıza klonlayın.
+
+Gerekli NuGet paketlerini geri yükleyin.
+
+appsettings.json veya Program.cs içinde API adresinin doğru tanımlandığından emin olun:
+
+https://localhost:7081/
+
+
+Projeyi çalıştırın.
+
+3️⃣ API – Frontend Entegrasyonu
+
+API ve frontend projeleri aynı anda çalışıyor olmalıdır.
+
+StoriesApiService ve ChapterApiService sınıfları, API endpoint’lerine istek gönderir.
+
+Tüm kullanıcı işlemleri API üzerinden işlenir.
 
 Kullanım
-•	Ana sayfada hikaye ekleyebilir, mevcut hikayeleri görebilir ve düzenleyebilirsiniz.
-•	Her hikaye için “Bölüm Ekle” butonuna tıklayarak ilgili bölümleri yönetebilirsiniz.
-•	Tüm işlemler anında API’ya yansır.
+
+Ana sayfa üzerinden yeni hikâyeler ekleyebilir ve mevcut hikâyeleri görüntüleyebilirsiniz.
+
+Her hikâye için Bölüm Ekle seçeneğiyle ilgili bölümleri yönetebilirsiniz.
+
+Yapılan tüm değişiklikler anlık olarak API tarafına yansır.
 
 Örnek API İstekleri
+Hikâye Ekleme
 POST /api/stories/add
+
 {
-  "title": "Yeni Hikaye",
+  "title": "Yeni Hikâye",
   "theme": "Macera",
   "description": "Kısa açıklama"
 }
 
+Hikâyeye Ait Bölümleri Getirme
 GET /api/chapters?storyId=1
-
-
