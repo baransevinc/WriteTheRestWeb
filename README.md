@@ -1,124 +1,66 @@
 # WriteTheRestWeb
 
-Hikâye ve bölümlerin yönetimi için geliştirilmiş **ASP.NET Core Razor Pages** tabanlı bir frontend uygulamasıdır.  
-Tüm veri işlemleri, ayrı bir **.NET Web API** projesi üzerinden gerçekleştirilir.
+WriteTheRestWeb, hikâyeler ve bu hikâyelere bağlı bölümlerin yönetimi için geliştirilmiş bir ASP.NET Core Razor Pages frontend uygulamasıdır.  
+Uygulama yalnızca kullanıcı arayüzünü içerir ve tüm veri işlemleri ayrı bir .NET Web API projesi üzerinden yapılır.
 
----
+# Genel Bilgi
 
-## Proje Hakkında
+Bu projede frontend ve backend birbirinden ayrıdır.  
+Frontend tarafı yalnızca API ile iletişim kurar ve doğrudan veri işlemi yapmaz.  
+API ile haberleşme HttpClient kullanılarak sağlanır.
 
-**WriteTheRestWeb**, hikâyeleri ve bu hikâyelere ait bölümleri yönetmeye yönelik bir kullanıcı arayüzü sunar.  
-Uygulama, iş mantığını ve veri erişimini içermeyen, yalnızca API ile haberleşen bir frontend yapısına sahiptir.
+# Proje Yapısı
 
----
+- WriteTheRestWeb  
+  Kullanıcı arayüzünü barındıran Razor Pages uygulaması.
 
-## Proje Yapısı
+- WriteTheRestApi  
+  Hikâye ve bölüm verilerini yöneten .NET Web API projesi.
 
-WriteTheRestWeb
-│
-
-├─ Frontend (ASP.NET Core Razor Pages)
-
-│ └─ API Entegrasyonu (HttpClient)
-
-│
-WriteTheRestApi
-
-└─ Backend (.NET Web API)
-
-yaml
-Kodu kopyala
-
-- **WriteTheRestWeb**  
-  Razor Pages kullanılarak geliştirilmiş kullanıcı arayüzü projesi.
-
-- **WriteTheRestApi**  
-  Veri işlemleri ve iş kurallarını yöneten backend API projesi.
-
----
-
-## Özellikler
+# Özellikler
 
 - Hikâye ekleme, listeleme, düzenleme ve silme
-- Hikâyelere bağlı bölümlerin yönetimi
-- Tüm CRUD işlemlerinin API üzerinden yapılması
-- Temiz ve sade Razor Pages mimarisi
+- Hikâyelere ait bölümlerin eklenmesi ve yönetilmesi
+- Tüm işlemlerin API üzerinden yapılması
+- Basit ve anlaşılır Razor Pages yapısı
 - HttpClient ile API entegrasyonu
 
----
-
-## Gereksinimler
+# Gereksinimler
 
 - .NET 8 SDK
 - Visual Studio 2022 veya üzeri
 - Çalışır durumda bir WriteTheRestApi projesi
 
----
+# Çalıştırma Adımları
 
-## Kurulum ve Çalıştırma
+# API Projesi
 
-### 1. API Projesini Çalıştırma
+API projesini açıp çalıştırın.  
+Varsayılan olarak https://localhost:7081/ adresinde çalışır.
 
-1. WriteTheRestApi projesini açın
-2. Projeyi çalıştırın
-3. Varsayılan adres:
+Kullanılan endpoint’ler:
+- api/stories (hikâye işlemleri)
+- api/chapters (bölüm işlemleri)
 
-https://localhost:7081/
+# Frontend Projesi
 
-yaml
-Kodu kopyala
+Bu repository’yi klonlayın.  
+Gerekli NuGet paketlerini yükleyin.  
+API adresinin doğru tanımlandığından emin olun.  
+Projeyi çalıştırın.
 
-**API Endpoint’leri**
-- `api/stories` – Hikâye işlemleri
-- `api/chapters` – Bölüm işlemleri
+# Kullanım
 
----
+Uygulama üzerinden hikâyeler eklenebilir ve mevcut hikâyeler yönetilebilir.  
+Her hikâye için bölümler oluşturulabilir ve düzenlenebilir.  
+Yapılan tüm işlemler anında API tarafına yansır.
 
-### 2. Frontend Projesini Çalıştırma
+# Örnek API İstekleri
 
-1. Bu repository’yi klonlayın
-2. Gerekli NuGet paketlerini geri yükleyin
-3. API adresini kontrol edin:
-
+Hikâye ekleme:
 ```json
-{
-  "ApiBaseUrl": "https://localhost:7081/"
-}
-Projeyi başlatın
-
-3. Entegrasyon
-API ve frontend projeleri aynı anda çalışmalıdır
-
-StoriesApiService ve ChapterApiService sınıfları API çağrılarını yapar
-
-Yapılan tüm işlemler API tarafına anında yansır
-
-Kullanım
-Ana sayfadan hikâye ekleyebilir ve mevcut hikâyeleri yönetebilirsiniz
-
-Her hikâye için bölüm ekleme ve düzenleme işlemleri yapılabilir
-
-Tüm işlemler API üzerinden gerçekleştirilir
-
-Örnek API İstekleri
-Hikâye Ekleme
-h
-Kodu kopyala
-POST /api/stories/add
-json
-Kodu kopyala
 {
   "title": "Yeni Hikâye",
   "theme": "Macera",
   "description": "Kısa açıklama"
 }
-Bölümleri Listeleme
-http
-Kodu kopyala
-GET /api/chapters?storyId=1
-Notlar
-API adresi ortama göre değiştirilebilir
-
-Proje geliştirme ve öğrenme amaçlıdır
-
-Katkılar açıktır
